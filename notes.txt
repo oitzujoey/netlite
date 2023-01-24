@@ -1,0 +1,50 @@
+
+Lots of entities
+Entities can be added to different entity lists. There will be one entity list that contains all entities.
+Entities will be tags that describe their purpose. These tags will be used to keep track of what lists the entities are on. When an entity is created, it will be added to all lists associated with its tags. When it is deleted, it will be deleted from all lists with its tags.
+Entities can have sub-entities. All orientation, position, and velocity will be relative to the parent entity.
+
+Input → Gets keyboard, mouse, and controller input and sends to Server
+Server → Sets gamestate based on Input and sends to Output
+Output → Receives gamestate from Server, renders viewport, and gives player feedback. Output is separate from Input, so it is possible to stream a player's view to a spectator.
+
+Input (Python or C)
+Server (Python)
+Output (C)
+
+entities->all (entity_t*)
+entities.all_length (unsigned int)
+entities->ships (entity_t*)
+entities.ships_length (unsigned int)
+entities->planets (entity_t*)
+entities.planets_length (unsigned int)
+entities->stars (entity_t*)
+entities.stars_length (unsigned int)
+entities->docks (entity_t*)
+entities.docks_length (unsigned int)
+entities->add (int)(entity_t *entity, int length)
+entities->delete (int)(entity_t *entity, int length)
+
+Tags:
+ship
+planet
+star
+dock
+child → This entity is not to be put on the main entity list. Place the child under the parent and then add it to the entity structure. When the parent entity is deleted, the child entities are recursively deleted as well.
+
+
+Multiple languages:
+	C will be the Latin.
+	Lua/Fennel or duck-lisp will be the soft layer, if one exists.
+	Dale will be used in place of C when possible.
+	Duck-lisp may be a good candidate for the game code since the garbage collector can be modified.
+		Dale may be a good candidate for the VM.
+	SBCL may be used as a wrapper around Dale, mostly for easy debugging.
+	Models will be stored in an sexp format to ease parsing.
+
+
+ENet will be used for networking.
+
+If Lua is used…
+   	Additional functions must be added for allocation across frames.
+	

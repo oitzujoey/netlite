@@ -1,0 +1,14 @@
+(import stdlib)
+(import macros)
+(import cstdio)
+(import sdl2)
+(import common)
+
+(defun sleep extern-c uint ((seconds uint)))
+
+(defun main extern-c int ((argc int) (argv (p (p char))))
+       (do
+           (SDL_Init 20)
+           (SDL_CreateWindow (nullptr (const char)) 536805376 536805376 640 480 4)
+         (sleep 5)
+         0))

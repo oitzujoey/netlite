@@ -1,0 +1,20 @@
+
+(module sdl2)
+
+(import macros)
+
+(def SDL_Init (fn extern-c int ((flags uint32))))
+(def SDL_CreateWindow (fn extern-c (p void) ((title (p (const char)))
+                                             (x int)
+                                             (y int)
+                                             (w int)
+                                             (h int)
+                                             (flags uint32))))
+
+(def SDL_WINDOWPOS_UNDEFINED_MASK (macro intern (void) (q 0x1FFF0000)))
+(def SDL_WINDOWPOS_UNDEFINED_DISPLAY (macro intern (X)
+                                            (std.macros.qq |
+;|; Stupid Lisp analyzer.
+                                                (SDL_WINDOWPOS_UNDEFINED_MASK) (uq X))))
+(def SDL_WINDOWPOS_UNDEFINED (macro intern (void)
+                                    (q (SDL_WINDOWPOS_UNDEFINED_DISPLAY 0))))

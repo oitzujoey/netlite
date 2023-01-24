@@ -1,0 +1,30 @@
+(module common)
+
+(import macros)
+
+(namespace common
+           (namespace macros
+                      (def make-constant
+                           (macro extern (name linkage value)
+                                  (using-namespace std.macros
+                                                   (qq def (uq name)
+                                                       (macro (uq linkage) (void) (std.macros.mnfv mc (uq value)))))))))
+
+;; Macro definition
+(def defmacro
+     (macro extern (name linkage args body)
+            (using-namespace std.macros
+                             (qq def (uq name)
+                                 (macro (uq linkage) (uq args)
+                                        (using-namespace std.macros
+                                                         (uq body)))))))
+
+;; Function prototype
+(defmacro defun extern (name linkage return-type args)
+          (qq def (uq name)
+              (fn (uq linkage) (uq return-type) (uq args))))
+;; Function definition
+(defmacro defun extern (name linkage return-type args body)
+          (qq def (uq name)
+              (fn (uq linkage) (uq return-type) (uq args)
+                  (uq body))))
