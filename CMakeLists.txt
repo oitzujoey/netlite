@@ -69,9 +69,9 @@ SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 add_executable(netlite
-  src/main.dt
   src/common.dt
-  src/bindings/sdl2.h.dt)
+  src/bindings/sdl2.h.dt
+  src/main.dt)
 set_target_properties(netlite PROPERTIES LINKER_LANGUAGE CXX)
 # compile_dale(src/main.dt main)
 target_link_libraries (netlite SDL2 dale)
