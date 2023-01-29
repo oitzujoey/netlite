@@ -5,5 +5,5 @@
 ```bash
 mkdir build && cd build
 cmake ..
-cmake --build . -- VERBOSE=1
+make -j1 VERBOSE=1
 ```
